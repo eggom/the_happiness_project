@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happiness Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <!-- Add header image here -->
+    <img src="{{ url_for('static', filename='images/header_1.png') }}" alt="Header Image" style="width: 100%; height: auto;">
+    
+    <div class="container">
+        <h1>{{ prediction_text }}</h1>
+        <div id="plot"></div>
+    </div>
+    <div>
+        {{ graph|safe }}
+    </div>
+    <img src="{{ url_for('static', filename='images/happiness_scale.png') }}" alt="Hapiness Scale" style="width: 100%; height: auto;">
+
+    <img src="{{ url_for('static', filename='images/feature_comparison_boxplot.png') }}" alt="Feature Comparison Boxplot" style="width: 100%; height: auto;">
+</body>
+</html>

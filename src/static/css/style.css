@@ -1,0 +1,97 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #264653; /* Deep blue-green */
+    color: #333333;
+    line-height: 1.6;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+h1 {
+    text-align: center;
+    color: #F4A261; /* Dark orange color for labels */
+}
+
+h4 {
+    text-align: center;
+    color: #E9C46A; /* Sandy yellow */
+}
+
+form {
+    background: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #2A9D8F; /* Greenish-blue */
+}
+
+input[type='range'] {
+    width: 100%;
+    margin-bottom: 0px;
+    background: url('/static/images/happiness_scale.png') no-repeat center center;
+    background-size: cover;
+    -webkit-appearance: none; /* Hides the default slider styling */
+    appearance: none;
+}
+
+input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color: #E76F51; /* Burnt orange for the slider thumb */
+    border: none; /* Removing border */
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.slider-labels {
+    margin-top: 0px;
+    display: flex;
+    justify-content: space-between;
+    width: 111%;
+    margin-bottom: 10px;
+}
+
+.slider-labels span {
+    flex-grow: 1;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
+.divider {
+    margin-top: 20px; /* Add space above the divider */
+    border: none;
+    height: 1px;
+    margin-bottom: 15px;
+    background-color: #264653; /* Dark blue for the divider */
+}
+
+input[type='number'] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+}
+
+input[type='submit'] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #2A9D8F; /* Greenish-blue */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type='submit']:hover {
+    background-color: #264653; /* Dark blue for contrast on hover */
+}

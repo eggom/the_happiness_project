@@ -1,0 +1,11 @@
+﻿Iteration,Workflow Component,Old Method,New Method,Rationale for Change,Impact on Model
+1,Feature Scaling,Post-split,Pre-split,Prevent data leakage,Improved model validity
+2,Model Training - Logistic Regression,Initial fit on scaled features,Refit with corrected scaling,Accurate scaling application,Slight improvement in accuracy and consistency
+3,Model Training - Random Forest,Initial fit on scaled features,Refit with corrected scaling,Accurate scaling application,Enhanced generalizability and robustness against overfitting
+4,Model Training - Decision Tree,Initial fit on scaled features,Refit with corrected scaling,Accurate scaling application,Better performance in terms of false positives and negatives
+5,Data Loading,From CSV file,From SQLite database using SQLAlchemy,Project requirement to incorporate SQL database,Facilitated a more scalable and robust data handling process
+6,Model Evaluation Metrics,Confusion matrix analysis,Same but with updated models,Ensure consistency in performance assessment,Confirmed improvements in model predictions
+7,Model Optimization Process,Ad-hoc adjustments,Structured iterative tuning and evaluation,Formalize the model improvement process,Clear logging of performance changes leading to final model selection
+8,Model Selection Criteria,Initial performance metrics,Consideration of robustness, generalizability, and feature importance,Select a model fitting for deployment,Random Forest chosen for its balanced metrics and adaptability
+9,Feature Import Analysis,Not performed,Executed for Random Forest model,Gain insights into feature relevance,Informed further feature engineering and model refinement
+10,Result Presentation,Basic output,Detailed output with Flask and Plotly,Enhance user experience and interactivity,Provided a clear and engaging visual representation of results

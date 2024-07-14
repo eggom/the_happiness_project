@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happiness Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <img src="{{ url_for('static', filename='images/header_2.png') }}" alt="Header Image", style="width: 100%; height: auto;">
+    <div class="container">
+        <h1>Welcome to the Happiness Predictor</h1>
+        <h4>Please rate the following aspects of your life on a scale of 1 to 10, where 1 indicates the least satisfaction and 10 indicates the utmost satisfaction:</h4>
+
+        <form action="/predict" method="post">
+            
+            <label for="gdp" style="font-weight:bold;">Economic Prosperity (GDP per Capita):</label>
+            <p>Consider your personal financial situation, such as your income level, financial security, and ability to provide for your needs and wants.</p>
+            <input type="range" id="gdp" name="gdp" min="1" max="10" value="5" step="1">
+            <div class="slider-labels">
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+                <span>6</span>
+                <span>7</span>
+                <span>8</span>
+                <span>9</span>
+                <span>10</span>
+            </div>
+            <hr class="divider">            
+            
+            <label for="social" style="font-weight:bold;">Social Support (Family):</label>
+            <p>Think about the level of support you have from family and friends. How strong are your social networks and how much do they contribute to your life satisfaction?</p>
+            <input type="range" id="social" name="social" min="1" max="10" value="5" step="1">
+            <div class="slider-labels">
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+                <span>6</span>
+                <span>7</span>
+                <span>8</span>
+                <span>9</span>
+                <span>10</span>
+            </div>
+            <hr class="divider">
+
+            <label for="health" style="font-weight:bold;">Healthy Life Expectancy (Life Expectancy):</label>
+            <p>Reflect on your personal health and well-being. Consider how your health enables you to live a life full of potential and activities that you value.</p>
+            <input type="range" id="health" name="health" min="1" max="10" value="5" step="1">
+            <div class="slider-labels">
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+                <span>6</span>
+                <span>7</span>
+                <span>8</span>
+                <span>9</span>
+                <span>10</span>
+            </div>
+            <hr class="divider">
+
+            <label for="freedom" style="font-weight:bold;">Freedom to Make Life Choices (Freedom):</label>
+            <p>Assess how free you feel in making life choices. Are you able to pursue your goals and dreams without undue restriction?</p>
+            <input type="range" id="freedom" name="freedom" min="1" max="10" value="5" step="1">
+            <div class="slider-labels">
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+                <span>6</span>
+                <span>7</span>
+                <span>8</span>
+                <span>9</span>
+                <span>10</span>
+            </div>
+            <hr class="divider">
+
+            <label for="corruption" style="font-weight:bold;">Perception of Corruption (NoCorruption):</label>
+            <p>Consider the extent of corruption within businesses and government in your environment. How does this affect your trust in these institutions?</p>
+            <input type="range" id="corruption" name="corruption" min="1" max="10" value="5" step="1">
+            <div class="slider-labels">
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+                <span>6</span>
+                <span>7</span>
+                <span>8</span>
+                <span>9</span>
+                <span>10</span>
+            </div>
+            <hr class="divider">
+
+            <label for="generosity" style="font-weight:bold;">Generosity:</label>
+            <p>Think about your tendency to be generous and your experiences with generosity in your community. How often do you engage in acts of generosity and kindness?</p>
+            <input type="range" id="generosity" name="generosity" min="1" max="10" value="5" step="1">
+            <div class="slider-labels">
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+                <span>6</span>
+                <span>7</span>
+                <span>8</span>
+                <span>9</span>
+                <span>10</span>
+            </div>
+            <hr class="divider">
+
+            <label for="dystopia" style="font-weight:bold;">Dystopia Residual:</label>
+            <p>While more abstract, consider your overall contentment with life that isn't captured by the other factors. This could include aspects of your life such as satisfaction with your country's direction or personal freedoms.</p>
+            <input type="range" id="dystopia" name="dystopia" min="1" max="10" value="5" step="1">
+            <div class="slider-labels">
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+                <span>6</span>
+                <span>7</span>
+                <span>8</span>
+                <span>9</span>
+                <span>10</span>
+            </div>
+            <hr class="divider">
+
+            <input type="submit" value="Predict My Happiness">
+        </form>
+    </div>
+
+    {% if prediction_text %}
+        <div class="prediction">
+            <p>{{ prediction_text }}</p>
+        </div>
+    {% endif %}
+
+    <div id="plot"></div>
+
+ <!-- Include the plots.js script -->
+ <script src="{{ url_for('static', filename='js/plots.js') }}"></script>
+
+</body>
+</html>
